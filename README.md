@@ -53,7 +53,7 @@ Additional script includes automatic aliases.
 
 In this repository is an additional file, `auto_alias.sh`.
 
-Running `zsh auto_alias.sh` from inside repository directory will automatically add aliases to `~/.zshrc` file and source it. It will use current repository path, so if you move it you will need to run the script again to update the paths or just edit the `~/.zshrc` file.
+Running `zsh auto_alias.sh` from inside repository directory will automatically add aliases to `~/.zshrc` file and source it. It will use current repository path, so if you move it you will need to run the script again to update the paths or just edit the `~/.zshrc` file. This will also back up the `~/.zshrc` file to the current repository.
 
 Current aliases added:
 
