@@ -1,6 +1,6 @@
 # git-auto-script
 
-## Repo Overview
+## Repository Overview
 
 `git_script.sh` was made for zsh to automate git add, commit push commands into 1 line with simple syntax.
 Additional script includes automatic aliases.
