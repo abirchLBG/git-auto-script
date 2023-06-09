@@ -63,4 +63,3 @@ Current aliases added:
 3. `alias "g..."="zsh /Users/Alexander.Birch/git_script/git-auto-script/git_script.sh -l"`
 
 This will let you use the aliases mentioned in insctructions.
-
