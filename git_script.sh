@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+# Print formatting
 NC=$'\033[0m'
 BGreen=$'\033[1;32m'
 BRed=$'\033[1;31m'
@@ -14,6 +15,7 @@ branch_name=$(git rev-parse --abbrev-ref HEAD)
 git_status=$(git status)
 pull_status="false"
 
+
 # Checks if commit msg is empty
 check_empty_msg() {
     msg_type="$1"
@@ -27,6 +29,7 @@ check_empty_msg() {
     done
     echo "$input_args_msg"
 }
+
 
 # (Not actually main lmao)
 main() {
@@ -68,6 +71,7 @@ main() {
     fi
 }
 
+
 # (main) Function to check if the branch is master/main
 check_branch() {
     if [[ "$branch_name" = "master" || "$branch_name" = "main" ]]; then
@@ -79,6 +83,7 @@ check_branch() {
         esac
     fi
 }
+
 
 # Fucntion to execute git commands
 custom_msg() {
@@ -97,6 +102,7 @@ custom_msg() {
     echo "$prefix Git script finished successfully!"
     exit 1
 }
+
 
 check_status() {
     if [[ $git_status =~ "Your branch is behind" ]]; then
