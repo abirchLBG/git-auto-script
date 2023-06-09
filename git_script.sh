@@ -44,19 +44,19 @@ main() {
                 c) msg="${main_args_list[@]:3}"
                     msg=$(check_empty_msg "c" "$msg")
                     echo "$msg" > "./last_commit_msg.txt"
-                    custom_msg "$msg";;
+                    custom_msg $msg;;
 
                 # feat: branch_name prefix
                 f) msg="${main_args_list[@]:3}"
                     msg=$(check_empty_msg "f" "$msg")
                     msg="feat: $branch_name $msg"
                     echo "$msg" > "./last_commit_msg.txt"
-                    custom_msg "$msg";;
+                    custom_msg $msg;;
 
                 # last used msg
                 l) msg=$(cat ./last_commit_msg.txt)
                     msg=$(check_empty_msg "c" "$msg")
-                    custom_msg "$msg";;
+                    custom_msg $msg;;
                 
                 # default case
                 \?) echo "$prefix Invalid flag passed. Exiting."
