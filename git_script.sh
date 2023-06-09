@@ -83,6 +83,7 @@ custom_msg() {
     git add -A
     git commit -m \"$*\"
     git push
+    echo "$prefix Git script finished successfully!"
     exit 1
 }
 
