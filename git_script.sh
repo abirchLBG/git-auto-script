@@ -83,6 +83,7 @@ main() {
 
 # (main) Function to check if the branch is master/main
 check_branch() {
+    # echo "INFO: check_branch() called"
     if [[ "$branch_name" = "master" || "$branch_name" = "main" ]]; then
         read -r "?$prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}(Y/n)${NOT_BOLD}? " choice
         case $choice in
@@ -90,6 +91,8 @@ check_branch() {
             [nN]) echo "$prefix Git script terminated.";;
             *) check_branch "$*" ;;
         esac
+    else 
+        main $@
     fi
 }
 
@@ -114,6 +117,7 @@ custom_msg() {
 
 
 check_status() {
+    # echo "INFO: check_status() called"
     if [[ $git_status =~ "Your branch is behind" ]]; then
         read -r "?$prefix Branch is behind '${BGreen}$branch_name${NC}'. Git pull ${BOLD}(Y/n)${NOT_BOLD}? " pull_choice
         case $pull_choice in
@@ -128,7 +132,7 @@ check_status() {
     fi
 }
 
-
+echo "GIT SCRIPT CALLED"
 # main() func call
 check_branch $@
 
