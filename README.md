@@ -43,6 +43,9 @@ Additional script includes automatic aliases.
     Commit message: `custom msg text`
 
 3. Re-using last commit message
+
+    Note: Saved commit message is global, and is not specific to a branch or repository.
+
     * `zsh path/git_script.sh -l`
     * (auto-alias) `g...`
 
