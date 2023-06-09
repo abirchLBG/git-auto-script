@@ -18,6 +18,9 @@ echo "$prefix Appending aliases to $filename"
 echo "$prefix alias \"g.\"=\"zsh $script_path -f"
 echo "alias \"g.\"=\"zsh $script_path -f\"" >> $filename
 
+echo "$prefix alias \"g.r\"=\"zsh $script_path -r"
+echo "alias \"g.r\"=\"zsh $script_path -r\"" >> $filename
+
 echo "$prefix alias \"g..\"=\"zsh $script_path -c"
 echo "alias \"g..\"=\"zsh $script_path -c\"" >> $filename
 

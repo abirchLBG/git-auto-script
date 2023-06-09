@@ -13,8 +13,9 @@ Additional script includes automatic aliases.
 2. With aliasing can be reduced to 2-4 characters (auto-alias script included).
 3. Depending on flag message can be:
     1. Pre-fixed with `feat: branch_name`
-    2. Custom
-    3. Re-use last commit message
+    2. Pre-fixed with `release: branch_name`
+    3. Custom
+    4. Re-use last commit message
 4. Script will automatically check if branch is master/main and ask to continue if true.
 5. Script will check if branch is behind, and ask to pull after committing.
 6. If no commit message is passed, will ask to pass one.
@@ -32,7 +33,16 @@ Additional script includes automatic aliases.
 
     Commit message: `feat: branch_name suffix msg text`
 
-2. Writing custom messages (use any)
+2. Writing `release: branch_name` pre-fixed messages (use any)
+
+    * `zsh path/git_script.sh -r`
+    * `zsh path/git_script.sh -r suffix msg text`
+    * (auto-alias) `g.r`
+    * (auto-alias) `g.r suffix msg text`
+
+    Commit message: `feat: branch_name suffix msg text`
+
+3. Writing custom messages (use any)
 
     * `zsh path/git_script.sh`
     * `zsh path/git_script.sh custom msg text`
@@ -42,7 +52,7 @@ Additional script includes automatic aliases.
 
     Commit message: `custom msg text`
 
-3. Re-using last commit message
+4. Re-using last commit message
 
     Note: Saved commit message is global, and is not specific to a branch or repository.
 
@@ -62,7 +72,8 @@ Running `zsh auto_alias.sh` from inside repository directory will automatically 
 Current aliases added:
 
 1. `alias "g."="zsh path/git-auto-script/git_script.sh -f"`
-2. `alias "g.."="zsh /Users/Alexander.Birch/git_script/git-auto-script/git_script.sh -c"`
-3. `alias "g..."="zsh /Users/Alexander.Birch/git_script/git-auto-script/git_script.sh -l"`
+2. `alias "g.."="zsh path/git-auto-script/git_script.sh -c"`
+3. `alias "g..."="zsh path/git-auto-script/git_script.sh -l"`
+4. `alias "g.r"="zsh path/git-auto-script/git_script.sh -r"`
 
 This will let you use the aliases mentioned in insctructions.

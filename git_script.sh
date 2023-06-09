@@ -23,7 +23,9 @@ check_empty_msg() {
     while [ -z "$input_args_msg" ]; do
         if [ "$msg_type" = "c" ]; then
             read -r "?$prefix (CUSTOM) Please enter a commit message: " input_args_msg
-        else
+        elif [ "$msg_type" = "f" ]; then
+            read -r "?$prefix (PRE-FIXED) Please enter a commit message: " input_args_msg
+        elif [ "$msg_type" = "r" ]; then
             read -r "?$prefix (PRE-FIXED) Please enter a commit message: " input_args_msg
         fi
     done
@@ -40,7 +42,7 @@ main() {
         echo "$input_args" > "./last_commit_msg.txt"
         custom_msg "$input_args"
     else
-        while getopts ":cfl" flag; do
+        while getopts ":cflr" flag; do
             case "$flag" in
 
                 # custom msg
@@ -59,6 +61,13 @@ main() {
                 # last used msg
                 l) msg=$(cat ./last_commit_msg.txt)
                     msg=$(check_empty_msg "c" "$msg")
+                    custom_msg "$msg";;
+
+                # release: branch_name prefix
+                r) msg="${main_args_list[@]:3}"
+                    msg=$(check_empty_msg "r" "$msg")
+                    msg="release: $branch_name $msg"
+                    echo "$msg" > "./last_commit_msg.txt"
                     custom_msg "$msg";;
                 
                 # default case
