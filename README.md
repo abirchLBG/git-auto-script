@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-`git_script.sh` was made for zsh to automate git add, commit push commands into 1 line with simple syntax.
+`git_script.sh` was made for zsh to automate git add, commit, pull, push commands into 1 line with simple syntax.
 Additional script includes automatic aliases.
 
 ---
@@ -16,7 +16,8 @@ Additional script includes automatic aliases.
     2. Custom
     3. Re-use last commit message
 4. Script will automatically check if branch is master/main and ask to continue if true.
-5. If no commit message is passed, will ask to pass one.
+5. Script will check if branch is behind, and ask to pull after committing.
+6. If no commit message is passed, will ask to pass one.
 
 ---
 
