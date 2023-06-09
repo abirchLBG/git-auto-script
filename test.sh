@@ -3,7 +3,7 @@
 check_status() {
     git_status=$(git status)
     echo "st $git_status"
-    if [[ *"$git_status"* = "nothing to commit" ]]; then
+    if [[ $git_status =~ "nothing to commit" ]]; then
         echo "No changes made"
     else
         echo "changes made"
