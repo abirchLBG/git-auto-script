@@ -53,7 +53,7 @@ main() {
                     custom_msg "$msg";;
                 
                 # default case
-                \?) echo "$prefix Invalid flag passed"
+                \?) echo "$prefix Invalid flag passed. Exiting."
                     exit 1;;
             esac
         done
@@ -87,5 +87,5 @@ custom_msg() {
     exit 1
 }
 
-# main() func
+# main() func call
 check_branch $@
