@@ -66,7 +66,7 @@ main() {
                 # release: branch_name prefix
                 r) msg="${main_args_list[@]:3}"
                     msg=$(check_empty_msg "r" "$msg")
-                    msg="release: $branch_name $msg"
+                    msg="release: $msg"
                     echo "$msg" > "./last_commit_msg.txt"
                     custom_msg "$msg";;
                 

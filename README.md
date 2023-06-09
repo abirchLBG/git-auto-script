@@ -13,7 +13,7 @@ Additional script includes automatic aliases.
 2. With aliasing can be reduced to 2-4 characters (auto-alias script included).
 3. Depending on flag message can be:
     1. Pre-fixed with `feat: branch_name`
-    2. Pre-fixed with `release: branch_name`
+    2. Pre-fixed with `release:`
     3. Custom
     4. Re-use last commit message
 4. Script will automatically check if branch is master/main and ask to continue if true.
@@ -33,7 +33,7 @@ Additional script includes automatic aliases.
 
     Commit message: `feat: branch_name suffix msg text`
 
-2. Writing `release: branch_name` pre-fixed messages (use any)
+2. Writing `release:` pre-fixed messages (use any)
 
     * `zsh path/git_script.sh -r`
     * `zsh path/git_script.sh -r suffix msg text`
