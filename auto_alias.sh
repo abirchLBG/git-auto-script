@@ -2,27 +2,31 @@
 
 # Automatically adds aliases to .zshrc for easier use
 
+NC=$'\033[0m'
+BGreen=$'\033[1;32m'
+prefix="[${BGreen}Auto-Alias${NC}]"
+
 filename=~/.zshrc
 
 script_path="$(pwd)/git_script.sh"
 
-echo "Backing up ~/.zshrc"
+echo "$prefix Backing up ~/.zshrc"
 cp $filename $(pwd)/.zshrc_backup
 
-echo "Appending aliases to $filename"
+echo "$prefix Appending aliases to $filename"
 
-echo "alias \"g.\"=\"zsh $script_path -f"
+echo "$prefix alias \"g.\"=\"zsh $script_path -f"
 echo "alias \"g.\"=\"zsh $script_path -f\"" >> $filename
 
-echo "alias \"g..\"=\"zsh $script_path -c"
+echo "$prefix alias \"g..\"=\"zsh $script_path -c"
 echo "alias \"g..\"=\"zsh $script_path -c\"" >> $filename
 
-echo "alias \"g...\"=\"zsh $script_path -l"
+echo "$prefix alias \"g...\"=\"zsh $script_path -l"
 echo "alias \"g...\"=\"zsh $script_path -l\"" >> $filename
 
-echo "Successfully appended aliases"
+echo "$prefix Successfully appended aliases"
 
-echo "Sourcing $filename"
+echo "$prefix Sourcing $filename"
 source $filename
-echo "$filename sourced"
-echo "Auto-alias script finished successfully"
+echo "$prefix $filename sourced"
+echo "$prefix Auto-alias script finished successfully"

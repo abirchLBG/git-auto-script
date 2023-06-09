@@ -1,27 +1,9 @@
 #!/bin/zsh
 
-# Instructions
-
-# Script will automatically check if branch is master/main and ask to continue if true
-# Will automatically overwrite last commit message to a txt file ./last_commit_msg.txt
-# If no commit message passed, it will ask you to put one in (all use cases except last message mode)
-
-# For better usability, add aliases into ~/.zshrc file e.g. `alias "g."="zsh ~/script_name.sh -f"`
-# Refresh .zshrc via >source ~/.zshrc
-# To call the script you can now do >g. msg text
-
-
-# Writiing custom messages:
-# >zsh script_name.sh
-# >zsh script_name.sh custom msg text
-# >zsh script_name.sh -c custom msg text
-
-# Writing 'feat: branch_name' pre-fixed messages
-# >zsh script_name.sh -f
-# >zsh script_name.sh -f suffix msg text
-
-# Writing last used commit message
-# >zsh script_name.sh -l
+NC=$'\033[0m'
+BGreen=$'\033[1;32m'
+BRed=$'\033[1;31m'
+prefix="[${BGreen}Git-Script${NC}]"
 
 
 input_args=""
@@ -33,9 +15,9 @@ check_empty_msg() {
     input_args_msg="${@:2}"
     while [ -z "$input_args_msg" ]; do
         if [ "$msg_type" = "c" ]; then
-            read -r "?Please enter a commit message: " input_args_msg
+            read -r "?$prefix (CUSTOM) Please enter a commit message: " input_args_msg
         else
-            read -r "?(PRE-FIXED) Please enter a commit message: " input_args_msg
+            read -r "?$prefix (PRE-FIXED) Please enter a commit message: " input_args_msg
         fi
     done
     echo "$input_args_msg"
@@ -71,7 +53,7 @@ main() {
                     custom_msg "$msg";;
                 
                 # default case
-                \?) echo "Invalid flag passed"
+                \?) echo "$prefix Invalid flag passed"
                     exit 1;;
             esac
         done
@@ -84,10 +66,10 @@ main() {
 check_branch() {
     branch_name=$(git rev-parse --abbrev-ref HEAD)
     if [[ "$branch_name" = "master" || "$branch_name" = "main" ]]; then
-        read -r "?Current branch is '$branch_name'. Continue (Y/n)? " choice
+        read -r "?$prefix Current branch is '${BRed}$branch_name${NC}'. Continue (Y/n)? " choice
         case $choice in
             [yY]) main $@ ;;
-            [nN]) echo "Terminating Git script. exit code 1";;
+            [nN]) echo "$prefix Git script terminated.";;
             *) check_branch "$*" ;;
         esac
     fi
