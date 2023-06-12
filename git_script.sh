@@ -33,7 +33,7 @@ check_empty_msg() {
 }
 
 
-# (Not actually main lmao)
+# (Not actually main. The naming origin of this function is debated amongs historians.)
 main() {
     check_status
     main_args_list=$@
