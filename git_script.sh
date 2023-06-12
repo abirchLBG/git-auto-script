@@ -132,7 +132,7 @@ check_status() {
     fi
 }
 
-echo "GIT SCRIPT CALLED"
+
 # main() func call
 check_branch $@
 
