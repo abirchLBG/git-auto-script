@@ -13,7 +13,6 @@ input_args=""
 branch_name=""
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 git_status=$(git status)
-# pull_status="false"
 pull_status=${GIT_SCRIPT_PULL:-"false"}
 script_loc=${0:a:h}
 
@@ -24,20 +23,23 @@ check_empty_msg() {
     input_args_msg="${@:2}"
     while [ -z "$input_args_msg" ]; do
         if [ "$msg_type" = "c" ]; then
-            read -r "?$prefix (CUSTOM) Please enter a commit message: " input_args_msg
+            read -r "?$prefix ${BOLD}(CUSTOM)${NOT_BOLD} Please enter a commit message: " input_args_msg
         elif [ "$msg_type" = "f" ]; then
-            read -r "?$prefix (PRE-FIXED) Please enter a commit message: " input_args_msg
+            read -r "?$prefix ${BOLD}(PRE-FIXED)${NOT_BOLD} Please enter a commit message: " input_args_msg
         elif [ "$msg_type" = "r" ]; then
-            read -r "?$prefix (PRE-FIXED) Please enter a commit message: " input_args_msg
+            read -r "?$prefix ${BOLD}(PRE-FIXED)${NOT_BOLD} Please enter a commit message: " input_args_msg
         fi
     done
     echo "$input_args_msg"
 }
 
 
-# (Not actually main. The naming origin of this function is debated amongs historians.)
+# (Not actually main)
+# The naming origin of this function is a widely debated topic amongst historians.
 main() {
-    check_status
+    if [ "$pull_status" = "false" ]; then
+        check_status
+    fi
     main_args_list=$@
     if [ $# -eq 0 ]; then
         input_args=$(check_empty_msg "c" "$*") 
@@ -102,7 +104,7 @@ custom_msg() {
     git commit -m $*
     echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
-        echo "$prefix pulling"
+        echo "$prefix Executing git pull."
         git pull
     fi
     git push
@@ -111,6 +113,7 @@ custom_msg() {
 }
 
 
+# 
 check_status() {
     # echo "INFO: check_status() called"
     if [[ $git_status =~ "Your branch is behind" ]]; then
@@ -128,8 +131,7 @@ check_status() {
 }
 
 
-
-echo "$prefix Starting Git-Script"
+echo "$prefix Starting Git-Script."
 # main() func call
 check_branch $@
 
