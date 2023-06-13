@@ -58,7 +58,7 @@ main() {
                     custom_msg "$msg";;
 
                 # last used msg
-                l) msg=$(cat ./last_commit_msg.txt)
+                l) msg=$(cat $script_loc/last_commit_msg.txt)
                     msg=$(check_empty_msg "c" "$msg")
                     custom_msg "$msg";;
 
