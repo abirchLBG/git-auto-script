@@ -101,7 +101,7 @@ check_branch() {
 # Fucntion to execute git commands
 custom_msg() {
     git add -A
-    git commit -m $*
+    git commit --quiet -m $*
     echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
         echo "$prefix Executing git pull."
