@@ -4,9 +4,12 @@
 NC=$'\033[0m'
 BGreen=$'\033[1;32m'
 BRed=$'\033[1;31m'
+BYellow=$'\033[1;33m' 
 BOLD=$(tput bold)
 NOT_BOLD=$(tput sgr0)
 prefix="[${BGreen}Git-Script${NC}]"
+red_prefix="[${BRed}Git-Script${NC}]"
+yellow_prefix="[${BYellow}Git-Script${NC}]"
 
 
 input_args=""
@@ -23,11 +26,11 @@ check_empty_msg() {
     input_args_msg="${@:2}"
     while [ -z "$input_args_msg" ]; do
         if [ "$msg_type" = "c" ]; then
-            read -r "?$prefix ${BOLD}(CUSTOM)${NOT_BOLD} Please enter a commit message: " input_args_msg
+            read -r "?$yellow_prefix ${BOLD}(CUSTOM)${NOT_BOLD} Please enter a commit message: " input_args_msg
         elif [ "$msg_type" = "f" ]; then
-            read -r "?$prefix ${BOLD}(PRE-FIXED)${NOT_BOLD} Please enter a commit message: " input_args_msg
+            read -r "?$yellow_prefix ${BOLD}(PRE-FIXED)${NOT_BOLD} Please enter a commit message: " input_args_msg
         elif [ "$msg_type" = "r" ]; then
-            read -r "?$prefix ${BOLD}(PRE-FIXED)${NOT_BOLD} Please enter a commit message: " input_args_msg
+            read -r "?$yellow_prefix ${BOLD}(PRE-FIXED)${NOT_BOLD} Please enter a commit message: " input_args_msg
         fi
     done
     echo "$input_args_msg"
@@ -43,7 +46,6 @@ main() {
     main_args_list=$@
     if [ $# -eq 0 ]; then
         input_args=$(check_empty_msg "c" "$*") 
-        echo "$input_args" > "./last_commit_msg.txt"
         custom_msg "$input_args"
     else
         while getopts ":cflr" flag; do
@@ -72,11 +74,10 @@ main() {
                     custom_msg "$msg";;
                 
                 # default case
-                \?) echo "$prefix Invalid flag passed. Exiting."
+                \?) echo "$red_prefix Invalid flag passed. Exiting."
                     exit 1;;
             esac
         done
-        echo "$main_args_list" > "./last_commit_msg.txt"
         custom_msg "$main_args_list"
     fi
 }
@@ -86,10 +87,10 @@ main() {
 check_branch() {
     # echo "INFO: check_branch() called"
     if [[ "$branch_name" = "master" || "$branch_name" = "main" ]]; then
-        read -r "?$prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}(Y/n)${NOT_BOLD}? " choice
+        read -r "?$yellow_prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}(Y/n)${NOT_BOLD}? " choice
         case $choice in
             [yY]) main $@ ;;
-            [nN]) echo "$prefix Git script terminated.";;
+            [nN]) echo "$red_prefix Git script terminated.";;
             *) check_branch "$*" ;;
         esac
     else 
