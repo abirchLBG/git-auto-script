@@ -105,7 +105,7 @@ custom_msg() {
     fi
     git push
     echo "$prefix Git script finished successfully!"
-    exit 1
+    exit 0
 }
 
 
@@ -116,12 +116,12 @@ check_status() {
         case $pull_choice in
             [yY]) pull_status="true" ;;
             [nN]) echo "$prefix Git script terminated."
-                    exit 1;;
+                    exit 0;;
             *) check_status ;;
         esac
     elif [[ $git_status =~ "nothing to commit" ]]; then
         echo "$prefix No changes made. Exiting."
-        exit 1
+        exit 0
     fi
 }
 
