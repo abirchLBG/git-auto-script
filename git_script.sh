@@ -114,7 +114,6 @@ custom_msg() {
 }
 
 
-
 check_status() {
     # echo "INFO: check_status() called"
     if [[ $git_status =~ "Your branch is behind" ]]; then
