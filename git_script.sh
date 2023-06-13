@@ -14,6 +14,7 @@ branch_name=""
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 git_status=$(git status)
 pull_status="false"
+script_loc=${0:a:h}
 
 
 # Checks if commit msg is empty
@@ -48,14 +49,12 @@ main() {
                 # custom msg
                 c) msg="${main_args_list[@]:3}"
                     msg=$(check_empty_msg "c" "$msg")
-                    echo "$msg" > "./last_commit_msg.txt"
                     custom_msg "$msg";;
 
                 # feat: branch_name prefix
                 f) msg="${main_args_list[@]:3}"
                     msg=$(check_empty_msg "f" "$msg")
                     msg="feat: $branch_name $msg"
-                    echo "$msg" > "./last_commit_msg.txt"
                     custom_msg "$msg";;
 
                 # last used msg
@@ -67,7 +66,6 @@ main() {
                 r) msg="${main_args_list[@]:3}"
                     msg=$(check_empty_msg "r" "$msg")
                     msg="release: $msg"
-                    echo "$msg" > "./last_commit_msg.txt"
                     custom_msg "$msg";;
                 
                 # default case
@@ -99,14 +97,9 @@ check_branch() {
 
 # Fucntion to execute git commands
 custom_msg() {
-    # echo "git add -A"
-    # echo "git commit -m \"$*\""
-    # if [ "$pull_status" = "true" ]; then
-    #     echo "git pull"
-    # fi
-    # echo "git push"
     git add -A
     git commit -m $*
+    echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
         git pull
     fi
@@ -131,6 +124,7 @@ check_status() {
         exit 1
     fi
 }
+
 
 
 echo "$prefix Starting Git-Script"
