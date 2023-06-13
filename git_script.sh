@@ -13,7 +13,8 @@ input_args=""
 branch_name=""
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 git_status=$(git status)
-pull_status="false"
+# pull_status="false"
+pull_status=${GIT_SCRIPT_PULL:-"false"}
 script_loc=${0:a:h}
 
 
@@ -101,6 +102,7 @@ custom_msg() {
     git commit -m $*
     echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
+        echo "$prefix pulling"
         git pull
     fi
     git push
