@@ -17,12 +17,15 @@ Additional script includes automatic aliases.
     3. Custom
     4. Re-use last commit message
 4. Script will automatically check if branch is master/main and ask to continue if true.
-5. Script will check if branch is behind, and ask to pull after committing.
+5. Script will check if branch is behind, and ask to pull after committing. (Can be set to always pull before pushing.)
 6. If no commit message is passed, will ask to pass one.
 
 ---
 
 ## Instructions
+
+Setting up always pulling before pushing:
+`export GIT_SCRIPT_PULL=true`. Alternatively, add line `export GIT_SCRIPT_PULL=true` to `~/.zshrc` , `source ~/.zshrc` .
 
 1. Writing `feat: branch_name` pre-fixed messages (use any)
 
