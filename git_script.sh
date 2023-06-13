@@ -136,3 +136,4 @@ echo "$prefix Starting Git-Script."
 # main() func call
 check_branch $@
 
+
