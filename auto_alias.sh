@@ -32,4 +32,5 @@ echo "$prefix Successfully appended aliases"
 echo "$prefix Sourcing $filename"
 source $filename
 echo "$prefix $filename sourced"
+git config --global --add --bool push.autoSetupRemote true
 echo "$prefix Auto-alias script finished successfully"
