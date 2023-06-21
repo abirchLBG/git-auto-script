@@ -136,3 +136,4 @@ echo "$prefix Starting Git-Script."
 check_branch $@
 
 
+
