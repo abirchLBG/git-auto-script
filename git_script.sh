@@ -76,6 +76,7 @@ main() {
                 
                 # default case
                 \?) echo "$red_prefix Invalid flag passed. Exiting."
+                    echo ""
                     exit 1;;
             esac
         done
@@ -131,6 +132,7 @@ check_status() {
         case $pull_choice in
             [yY]) pull_status="true" ;;
             [nN]) echo "$prefix Git script terminated."
+                    echo ""
                     exit 0;;
             *) check_status ;;
         esac
