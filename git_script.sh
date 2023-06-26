@@ -118,7 +118,7 @@ custom_msg() {
         git pull
     fi
     # echo "$prefix ${BOLD}Git script finished successfully!${NOT_BOLD}"
-    echo "$prefix ${BGreen}Git script finished successfully!${NC}"
+    echo "$prefix ${BGreen}Finished successfully!${NC}"
     exit 0
 }
 
