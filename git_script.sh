@@ -139,7 +139,7 @@ check_status() {
     fi
 }
 
-
+echo ""
 echo "$blue_prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
 # main() func call
 check_branch $@
