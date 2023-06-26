@@ -110,7 +110,7 @@ custom_msg() {
     fi
     git push --quiet
     echo "$prefix Git push finished."
-    git status
+    status_check=$(git status)
     echo "$prefix Git script finished successfully!"
     exit 0
 }
