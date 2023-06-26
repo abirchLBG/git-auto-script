@@ -8,9 +8,9 @@ BYellow=$'\033[1;33m'
 BBlue=$'\033[1;34m'
 BOLD=$(tput bold)
 NOT_BOLD=$(tput sgr0)
-prefix="[${BGreen}Git-Script${NC}]"
-red_prefix="[${BRed}Git-Script${NC}]"
-yellow_prefix="[${BYellow}Git-Script${NC}]"
+prefix="[${BGreen}Lazy-Git${NC}]"
+red_prefix="[${BRed}Lazy-Git${NC}]"
+yellow_prefix="[${BYellow}Lazy-Git${NC}]"
 
 
 input_args=""
@@ -143,7 +143,7 @@ check_status() {
 }
 
 echo ""
-echo "$prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
+echo "$prefix ${BOLD}Starting Lazy-Git.${NOT_BOLD}"
 # main() func call
 check_branch $@
 
