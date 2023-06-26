@@ -11,7 +11,6 @@ NOT_BOLD=$(tput sgr0)
 prefix="[${BGreen}Git-Script${NC}]"
 red_prefix="[${BRed}Git-Script${NC}]"
 yellow_prefix="[${BYellow}Git-Script${NC}]"
-blue_prefix="[${BBlue}Git-Script${NC}]"
 
 
 input_args=""
@@ -107,15 +106,15 @@ custom_msg() {
     git commit -m $*
     echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
-        echo "$blue_prefix Executing git pull."
+        echo "$prefix Executing git pull."
         git pull
     fi
     git push --quiet
     status_check=$(git status)
     if [[ "$status_check" =~ "up to date" ]]; then
-        echo "$blue_prefix Current branch is now up to date with remote."
+        echo "$prefix Current branch is now up to date with remote."
     else
-        echo "$blue_prefix Git push finished, but branch is not up to date with remote. Pulling."
+        echo "$prefix Git push finished, but branch is not up to date with remote. Pulling."
         git pull
     fi
     # echo "$prefix ${BOLD}Git script finished successfully!${NOT_BOLD}"
@@ -141,7 +140,7 @@ check_status() {
 }
 
 echo ""
-echo "$blue_prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
+echo "$prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
 # main() func call
 check_branch $@
 
