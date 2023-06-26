@@ -109,10 +109,12 @@ custom_msg() {
         git pull
     fi
     git push --quiet
-    echo "$prefix Git push finished."
     status_check=$(git status)
     if [[ "$status_check" =~ "up to date" ]]; then
-        echo "$prefix Current branch is up to date with remote."
+        echo "$prefix Current branch is now up to date with remote."
+    else
+        echo "$prefix Git push finished, but branch is not up to date with remote. Pulling."
+        git pull
     fi
     echo "$prefix Git script finished successfully!"
     exit 0
