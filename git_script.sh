@@ -111,6 +111,9 @@ custom_msg() {
     git push --quiet
     echo "$prefix Git push finished."
     status_check=$(git status)
+    if [ "$status_check" =~ "up to date" ]; then
+        echo "$prefix Current branch is up to date with remote."
+    fi
     echo "$prefix Git script finished successfully!"
     exit 0
 }
