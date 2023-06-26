@@ -116,7 +116,7 @@ custom_msg() {
         echo "$prefix Git push finished, but branch is not up to date with remote. Pulling."
         git pull
     fi
-    echo "$prefix Git script finished successfully!"
+    echo "$prefix ${BOLD}Git script finished successfully!${NOT_BOLD}"
     exit 0
 }
 
@@ -138,7 +138,7 @@ check_status() {
 }
 
 
-echo "$prefix Starting Git-Script."
+echo "$prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
 # main() func call
 check_branch $@
 
