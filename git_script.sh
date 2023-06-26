@@ -118,7 +118,8 @@ custom_msg() {
         echo "$blue_prefix Git push finished, but branch is not up to date with remote. Pulling."
         git pull
     fi
-    echo "$prefix ${BOLD}Git script finished successfully!${NOT_BOLD}"
+    # echo "$prefix ${BOLD}Git script finished successfully!${NOT_BOLD}"
+    echo "$prefix ${BGreen}Git script finished successfully!${NC}"
     exit 0
 }
 
