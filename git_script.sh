@@ -109,6 +109,8 @@ custom_msg() {
         git pull
     fi
     git push --quiet
+    echo "$prefix Git push finished."
+    git status
     echo "$prefix Git script finished successfully!"
     exit 0
 }
