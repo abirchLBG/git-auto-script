@@ -143,4 +143,3 @@ echo "$prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
 check_branch $@
 
 
-
