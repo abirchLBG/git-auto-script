@@ -119,6 +119,7 @@ custom_msg() {
     fi
     # echo "$prefix ${BOLD}Git script finished successfully!${NOT_BOLD}"
     echo "$prefix ${BGreen}Finished successfully!${NC}"
+    echo ""
     exit 0
 }
 
