@@ -82,4 +82,3 @@ Current aliases added:
 4. `alias "g.r"="zsh path/git-auto-script/git_script.sh -r"`
 
 This will let you use the aliases mentioned in insctructions.
-
