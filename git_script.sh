@@ -94,7 +94,7 @@ checkout_to_new_branch() {
 check_branch() {
     # echo "INFO: check_branch() called"
     if [[ "$branch_name" = "master" || "$branch_name" = "main" ]]; then
-        read -r "?$yellow_prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}((Y)es/(N)o/(S)witch)${NOT_BOLD}? " choice
+        read -r "?$yellow_prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}[Y/N/(S)witch]${NOT_BOLD}? " choice
         case $choice in
             [yY]) main $@ ;;
             [nN]) echo "$red_prefix Git script terminated.";;
