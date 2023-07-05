@@ -84,15 +84,21 @@ main() {
     fi
 }
 
+checkout_to_new_branch() {
+    read -r "?$yellow_prefix Enter new branch name to checkout to: " new_branch_name
+    git checkout -b "$new_branch_name"
+}
+
 
 # (main) Function to check if the branch is master/main
 check_branch() {
     # echo "INFO: check_branch() called"
     if [[ "$branch_name" = "master" || "$branch_name" = "main" ]]; then
-        read -r "?$yellow_prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}(Y/n)${NOT_BOLD}? " choice
+        read -r "?$yellow_prefix Current branch is '${BRed}$branch_name${NC}'. Continue ${BOLD}(Y/n/s)${NOT_BOLD}? " choice
         case $choice in
             [yY]) main $@ ;;
             [nN]) echo "$red_prefix Git script terminated.";;
+            [sS]) echo checkout_to_new_branch ;; 
             *) check_branch "$*" ;;
         esac
     else 
