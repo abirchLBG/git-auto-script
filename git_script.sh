@@ -112,14 +112,14 @@ custom_msg() {
     fi
     git push --quiet
     status_check=$(git status)
+    time_finish=$(date +%H:%M:%S)
     if [[ "$status_check" =~ "up to date" ]]; then
-        echo "$prefix Current branch is now up to date with remote."
+        echo "$prefix Current branch is now up to date with remote. ("$time_finish")"
     else
-        echo "$prefix Git push finished, but branch is not up to date with remote. Pulling."
+        echo "$prefix Git push finished, but branch is not up to date with remote. Pulling. ("$time_finish")"
         git pull
     fi
-    time_finish=$(date +%H:%M:%S)
-    echo "$prefix ${BGreen}Finished successfully! ["$time_finish"]${NC}"
+    echo "$prefix ${BGreen}Finished successfully!${NC}"
     echo ""
     exit 0
 }
