@@ -120,7 +120,7 @@ custom_msg() {
     status_check=$(git status)
     time_finish=$(date +%H:%M:%S)
     if [[ "$status_check" =~ "up to date" ]]; then
-        echo "$prefix Current branch is now up to date with remote. ("$time_finish")"
+        echo "$prefix Current branch is now up to date with remote ("$time_finish")."
     else
         echo "$prefix Git push finished, but branch is not up to date with remote. Pulling. ("$time_finish")"
         git pull
@@ -132,7 +132,7 @@ custom_msg() {
 
 
 check_status() {
-    
+
     if [[ $git_status =~ "Your branch is ahead" ]]; then
         read -r "?$yellow_prefix Branch is ahead '${BGreen}$branch_name${NC}'. Git push ${BOLD}(Y/n)${NOT_BOLD}? " push_choice
         case $pull_choice in
