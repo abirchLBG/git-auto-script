@@ -132,8 +132,18 @@ custom_msg() {
 
 
 check_status() {
-    # echo "INFO: check_status() called"
-    if [[ $git_status =~ "Your branch is behind" ]]; then
+    
+    if [[ $git_status =~ "Your branch is ahead" ]]; then
+        read -r "?$yellow_prefix Branch is ahead '${BGreen}$branch_name${NC}'. Git push ${BOLD}(Y/n)${NOT_BOLD}? " push_choice
+        case $pull_choice in
+            [yY]) git push ;;
+            [nN]) echo "$prefix Git script terminated."
+                    echo ""
+                    exit 0;;
+            *) check_status ;;
+        esac
+
+    elif [[ $git_status =~ "Your branch is behind" ]]; then
         read -r "?$yellow_prefix Branch is behind '${BGreen}$branch_name${NC}'. Git pull ${BOLD}(Y/n)${NOT_BOLD}? " pull_choice
         case $pull_choice in
             [yY]) pull_status="true" ;;
@@ -142,6 +152,7 @@ check_status() {
                     exit 0;;
             *) check_status ;;
         esac
+
     elif [[ $git_status =~ "nothing to commit" ]]; then
         echo "$prefix No changes made. Exiting."
         exit 0
