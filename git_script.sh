@@ -109,14 +109,14 @@ check_branch() {
 
 # Fucntion to execute git commands
 custom_msg() {
-    git add -A | sed "s/^/$prefix/"
-    git commit -m $* | sed "s/^/$prefix/"
+    git add -A | sed 's/^/    /'
+    git commit -m $* | sed 's/^/    /'
     echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
         echo "$prefix Executing git pull."
         git pull
     fi
-    git push --quiet | sed "s/^/$prefix/"
+    git push --quiet | sed 's/^/    /'
     status_check=$(git status)
     time_finish=$(date +%H:%M:%S)
     if [[ "$status_check" =~ "up to date" ]]; then
