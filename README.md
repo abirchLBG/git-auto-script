@@ -43,7 +43,7 @@ Setting up always pulling before pushing:
     * (auto-alias) `g.r`
     * (auto-alias) `g.r suffix msg text`
 
-    Commit message: `feat: branch_name suffix msg text`
+    Commit message: `release: suffix msg text`
 
 3. Writing custom messages (use any)
 
