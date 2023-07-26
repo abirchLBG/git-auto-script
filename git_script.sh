@@ -116,7 +116,7 @@ custom_msg() {
         echo "$prefix Executing git pull."
         git pull
     fi
-    git push --quiet
+    git push --quiet  | sed 's/^/    /'
     status_check=$(git status)
     time_finish=$(date +%H:%M:%S)
     if [[ "$status_check" =~ "up to date" ]]; then
