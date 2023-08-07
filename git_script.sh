@@ -90,9 +90,8 @@ checkout_to_new_branch() {
         read -r "?$yellow_prefix Enter new branch name to checkout to: " new_branch_name
     done
 
-    checkout_status=""
     if [ ! -z "$new_branch_name" ]; then
-        checkout_status=$(git checkout -b "$new_branch_name")
+        git checkout -b "$new_branch_name"
     fi
 }
 
@@ -114,16 +113,16 @@ check_branch() {
 }
 
 
-# Fucntion to execute git commands
+# Function to execute git commands
 custom_msg() {
-    git add -A | sed 's/^/    /'
-    git commit -m $* | sed 's/^/    /'
+    git add -A
+    git commit -m $*
     echo "$msg" > "$script_loc/last_commit_msg.txt"
     if [ "$pull_status" = "true" ]; then
         echo "$prefix Executing git pull."
         git pull
     fi
-    git push --quiet | sed 's/^/    /'
+    git push --quiet
     status_check=$(git status)
     time_finish=$(date +%H:%M:%S)
     if [[ "$status_check" =~ "up to date" ]]; then
