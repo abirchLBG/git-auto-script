@@ -16,7 +16,7 @@ Additional script includes automatic aliases.
     2. Pre-fixed with `release:`
     3. Custom
     4. Re-use last commit message
-4. Script will automatically check if branch is master/main and ask to continue if true.
+4. Script will automatically check if branch is master/main and ask to continue if true. It can also checkout all changes to a new branch.
 5. Script will check if branch is behind, and ask to pull after committing. (Can be set to always pull before pushing.)
 6. If no commit message is passed, will ask to pass one.
 
