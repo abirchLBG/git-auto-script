@@ -141,7 +141,7 @@ check_status() {
 
     if [[ $git_status =~ "Your branch is ahead" ]]; then
         read -r "?$yellow_prefix Branch is ahead '${BGreen}$branch_name${NC}'. Git push ${BOLD}(Y/n)${NOT_BOLD}? " push_choice
-        case $pull_choice in
+        case $push_choice in
             [yY]) git push ;;
             [nN]) echo "$prefix Git script terminated."
                     echo ""
