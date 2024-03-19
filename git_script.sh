@@ -169,4 +169,3 @@ echo ""
 echo "$prefix ${BOLD}Starting Git-Script.${NOT_BOLD}"
 # main() func call
 check_branch $@
-
