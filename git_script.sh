@@ -19,6 +19,7 @@ branch_name=$(git rev-parse --abbrev-ref HEAD)
 git_status=$(git status)
 pull_status=${GIT_SCRIPT_PULL:-"false"}
 script_loc=${0:a:h}
+dry_run="false"
 
 
 # Checks if commit msg is empty
@@ -46,10 +47,10 @@ main() {
     fi
     main_args_list=$@
     if [ $# -eq 0 ]; then
-        input_args=$(check_empty_msg "c" "$*") 
+        input_args=$(check_empty_msg "c" "$*")
         custom_msg "$input_args"
     else
-        while getopts ":cflr" flag; do
+        while getopts ":cflrn" flag; do
             case "$flag" in
 
                 # custom msg
@@ -73,7 +74,10 @@ main() {
                     msg=$(check_empty_msg "r" "$msg")
                     msg="release: $msg"
                     custom_msg "$msg";;
-                
+
+                # dry run mode
+                n) dry_run="true";;
+
                 # default case
                 \?) echo "$red_prefix Invalid flag passed. Exiting."
                     echo ""
@@ -115,25 +119,44 @@ check_branch() {
 
 # Function to execute git commands
 custom_msg() {
-    git add -A
-    git commit -m $*
-    echo "$msg" > "$script_loc/last_commit_msg.txt"
-    if [ "$pull_status" = "true" ]; then
-        echo "$prefix Executing git pull."
-        git pull
-    fi
-    git push --quiet
-    status_check=$(git status)
-    time_finish=$(date +%H:%M:%S)
-    if [[ "$status_check" =~ "up to date" ]]; then
-        echo "$prefix Current branch is now up to date with remote ("$time_finish")."
+    if [ "$dry_run" = "true" ]; then
+        echo "$prefix ${BYellow}DRY RUN MODE - No commands will be executed${NC}"
+        echo ""
+        echo "$prefix ${BOLD}Would execute the following commands:${NOT_BOLD}"
+        echo "  ${BBlue}1.${NC} git add -A"
+        echo "  ${BBlue}2.${NC} git commit -m \"$msg\""
+        echo "  ${BBlue}3.${NC} Save commit message to: $script_loc/last_commit_msg.txt"
+        if [ "$pull_status" = "true" ]; then
+            echo "  ${BBlue}4.${NC} git pull"
+            echo "  ${BBlue}5.${NC} git push"
+        else
+            echo "  ${BBlue}4.${NC} git push"
+        fi
+        echo ""
+        echo "$prefix ${BGreen}Dry run complete!${NC}"
+        echo ""
+        exit 0
     else
-        echo "$prefix Git push finished, but branch is not up to date with remote. Pulling. ("$time_finish")"
-        git pull
+        git add -A
+        git commit -m $*
+        echo "$msg" > "$script_loc/last_commit_msg.txt"
+        if [ "$pull_status" = "true" ]; then
+            echo "$prefix Executing git pull."
+            git pull
+        fi
+        git push --quiet
+        status_check=$(git status)
+        time_finish=$(date +%H:%M:%S)
+        if [[ "$status_check" =~ "up to date" ]]; then
+            echo "$prefix Current branch is now up to date with remote ("$time_finish")."
+        else
+            echo "$prefix Git push finished, but branch is not up to date with remote. Pulling. ("$time_finish")"
+            git pull
+        fi
+        echo "$prefix ${BGreen}Finished successfully!${NC}"
+        echo ""
+        exit 0
     fi
-    echo "$prefix ${BGreen}Finished successfully!${NC}"
-    echo ""
-    exit 0
 }
 
 
