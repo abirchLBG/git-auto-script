@@ -19,6 +19,7 @@ Additional script includes automatic aliases.
 4. Script will automatically check if branch is master/main and ask to continue if true. It can also checkout all changes to a new branch.
 5. Script will check if branch is behind, and ask to pull after committing. (Can be set to always pull before pushing.)
 6. If no commit message is passed, will ask to pass one.
+7. Dry run mode to preview commands without executing them.
 
 ---
 
@@ -63,6 +64,16 @@ Setting up always pulling before pushing:
     * (auto-alias) `g...`
 
     Commit message: last custom or pre-fixed message used
+
+5. Dry run mode (preview commands without executing)
+
+    The `-n` flag enables dry run mode, showing what commands would be executed without actually running them. This is useful for verifying the script's behavior before making changes.
+
+    * `zsh path/git_script.sh -n -f feature update`
+    * `zsh path/git_script.sh -n -c custom message`
+    * Can be combined with any other flag (`-f`, `-r`, `-c`, `-l`)
+
+    Output: Shows numbered list of commands that would be executed
 
 ---
 
